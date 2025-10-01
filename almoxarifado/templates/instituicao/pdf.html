@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Instituições</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 8px; } 
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 3px; text-align: left; vertical-align: top; }
+        th { background: #f4f4f4; font-size: 9px; }
+        h2 { color: #007bff; font-size: 16px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Lista de Instituições</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>Telefone</th>
+                <th>CEP</th>
+                <th>Logradouro</th>
+                <th>Nº</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>UF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inst in instituicao %} 
+            <tr>
+                <td>{{ inst.nome }}</td>
+                <td>{{ inst.cnpj }}</td>
+                <td>{{ inst.telefone }}</td>
+                <td>{{ inst.cep }}</td>
+                <td>{{ inst.logradouro }}</td>
+                <td>{{ inst.numero }}</td>
+                <td>{{ inst.bairro }}</td>
+                <td>{{ inst.cidade }}</td>
+                <td>{{ inst.estado }}</td>
+            </tr>
+            {% endfor %}
+            
+            {% if instituicao|length == 0 %}
+            <tr>
+                <td colspan="9">Nenhuma Instituição cadastrada.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <p style="text-align: right; font-size: 8px; margin-top: 40px;">Gerado em: {% now "d/m/Y H:i:s" %}</p>
+</body>
+</html>

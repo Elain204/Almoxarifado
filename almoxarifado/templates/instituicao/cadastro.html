@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+    
+    <h2 class="h2">Cadastrar Instituição</h2>
+
+    <div class="instituicao form mt-4">
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if erros %}
+                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    
+                    <ul class="list-unstyled mb-0">
+                        {% for campo, mensagem in erros.items %}
+                            <li>{{ mensagem }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="row g-3">
+                
+                <div class="col-lg-6 col-md-12">
+                    <label for="id_nome" class="form-label required">Nome da Instituição</label>
+                    <input type="text" name="nome" id="id_nome" class="form-control" required value="{{ val.nome|default_if_none:'' }}">
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <label for="id_cnpj" class="form-label required">CNPJ</label>
+                    <input type="text" name="cnpj" id="id_cnpj" class="form-control" required value="{{ val.cnpj|default_if_none:'' }}">
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <label for="id_cep" class="form-label required">CEP</label>
+                    <input type="text" name="cep" id="id_cep" class="form-control" required value="{{ val.cep|default_if_none:'' }}">
+                </div>
+                
+                <div class="col-lg-6 col-md-6">
+                    <label for="id_logradouro" class="form-label required">Logradouro (Rua/Avenida)</label>
+                    <input type="text" name="logradouro" id="id_logradouro" class="form-control" required value="{{ val.logradouro|default_if_none:'' }}">
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <label for="id_numero" class="form-label required">Número</label>
+                    <input type="text" name="numero" id="id_numero" class="form-control" required value="{{ val.numero|default_if_none:'' }}">
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <label for="id_bairro" class="form-label required">Bairro</label>
+                    <input type="text" name="bairro" id="id_bairro" class="form-control" required value="{{ val.bairro|default_if_none:'' }}">
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label for="id_cidade" class="form-label required">Cidade</label>
+                    <input type="text" name="cidade" id="id_cidade" class="form-control" required value="{{ val.cidade|default_if_none:'' }}">
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <label for="id_estado" class="form-label required">Estado (UF)</label>
+                    <input type="text" name="estado" id="id_estado" class="form-control" required value="{{ val.estado|default_if_none:'' }}">
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <label for="id_telefone" class="form-label required">Telefone</label>
+                    <input type="text" name="telefone" id="id_telefone" class="form-control" required value="{{ val.telefone|default_if_none:'' }}">
+                </div>
+                
+            </div>
+
+            <div class="row g-3 mt-4">
+                
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" data-disable-with="Salvando">
+                        <i class="fas fa-save me-1"></i> Salvar
+                    </button>
+                </div>
+                
+                <div class="col-auto">
+                    <a href="{% url 'lista_instituicao' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i> Voltar
+                    </a>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

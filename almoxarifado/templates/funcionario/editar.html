@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    
+    <div class="mt-5 mb-3">
+        <h2 class="h2">
+            Alterar Funcionário
+        </h2>
+    </div>
+    
+    <div class="funcionario form mt-5">
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if erros %}
+                <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    
+                    <h3 class="h6 fw-bold">{{ erros|length }} erro(s) ao salvar:</h3>
+                    <ul class="list-unstyled mb-0">
+                        {% for key, error in erros.items %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="row g-3">
+                
+                <div class="col-lg-8 col-md-6">
+                    <label for="id_nome" class="form-label required">Nome Completo</label>
+                    <input type="text" name="nome" id="id_nome" class="form-control" required value="{{ val.nome|default:funcionario.nome }}">
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <label for="user_username" class="form-label">Nome de Usuário</label>
+                    <input type="text" id="user_username" class="form-control" value="{{ funcionario.user.username }}" disabled>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <label for="id_data_nascimento" class="form-label required">Data de Nascimento</label>
+                    <input type="date" name="data_nascimento" id="id_data_nascimento" class="form-control" required value="{{ val.data_nascimento|default:funcionario.data_nascimento|date:'Y-m-d' }}">
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <label for="id_email" class="form-label required">Email</label>
+                    <input type="email" name="email" id="id_email" class="form-control" required value="{{ val.email|default:funcionario.email }}">
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <label for="id_telefone" class="form-label required">Telefone</label>
+                    <input type="text" name="telefone" id="id_telefone" class="form-control" required value="{{ val.telefone|default:funcionario.telefone }}">
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <label for="id_senha" class="form-label">Nova Senha</label>
+                    <input type="password" name="senha" id="id_senha" class="form-control">
+                </div>
+                
+                <div class="col-lg-6 col-md-12">
+                    <label for="instituicao_id" class="form-label required">Instituição</label>
+                    <select name="instituicao" id="instituicao_id" class="form-select" required>
+                        <option value="">Selecionar</option>
+                        {% for instituicao in instituicoes %}
+                            <option 
+                                value="{{ instituicao.id }}" 
+                                {% with selected_id=val.instituicao_id|default:funcionario.instituicao.id %}
+                                    {% if selected_id|stringformat:'s' == instituicao.id|stringformat:'s' %}selected{% endif %}
+                                {% endwith %}
+                            >
+                                {{ instituicao.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-4">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" data-disable-with="Salvando">Salvar</button>
+                </div>
+                <div class="col-auto">
+                    <a href="{% url 'lista_funcionario' %}" class="btn btn-secondary">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

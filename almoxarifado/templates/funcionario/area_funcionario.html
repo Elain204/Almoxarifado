@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <a href="{% url 'cadastrar_funcionario' %}" class="text-decoration-none">
+                <div class="card shadow-sm border-0 h-100 p-3 card-hover-scale">
+                    <div class="card-body text-center">
+                        <i class="fas fa-user-plus fa-3x mb-3 text-primary"style="color: rgb(38, 6, 156) !important;"></i>
+            
+                        <h5 class="card-title text-dark mb-0" >Novo Funcionário</h5>
+                        <span class="stretched-link"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+            <a href="{% url 'cadastrar_instituicao' %}" class="text-decoration-none">
+                <div class="card shadow-sm border-0 h-100 p-3 card-hover-scale">
+                    <div class="card-body text-center">
+                        <i class="fas fa-building fa-3x mb-3 text-success"></i>
+                        
+                        <h5 class="card-title text-dark mb-0">Cadastrar Instituição</h5>
+                        <span class="stretched-link"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+<style>
+
+</style>
+{% endblock %}

@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+ 
+header {
+    background: #030114; 
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    height: 90px;
+ 
+}
+ 
+header a {
+    color: white; 
+    text-decoration: none;
+}
+.header-direita{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+      
+}
+.btn-secondary{
+    margin-left: 100px;
+    background-color: #131c9e;
+    border: none;
+    
+ 
+    
+}
+ 
+ 
+.layout {
+    display: flex;
+    flex: 1;    
+ 
+}
+ 
+.sidebar {
+    width: 230px;
+    background: #ffffff; 
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid #ddd;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+}
+.sidebar .titulo{
+    text-align: center;
+    border-bottom: 1px solid grey
+}
+.sidebar .lista {
+    display: block;  
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .lista li {
+    display: block;
+    width: 100%; 
+    margin-bottom: 5px; 
+}
+
+ 
+.sidebar .lista li a {
+  
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: flex-start;  
+    width: 100%;  
+    margin: 0; 
+    padding: 20px 15px;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 20px;
+    color: #000000;
+    background-color: transparent;
+    text-decoration: none; 
+}
+
+.sidebar .lista a:hover {
+    box-shadow: 0 5px 15px rgba(108, 81, 124, 0.2);
+    transform: translateY(-2px);   
+    background-color: #d8cce4; 
+    color: #6c517c; 
+    
+}
+
+ 
+ 
+.sidebar .lista .barra1 i{
+    color: rgb(38, 6, 156);
+    margin: 10px;
+
+}
+.barra i{
+    color: crimson;
+    margin: 10px;
+}
+.barra2 i{
+    color: rgb(6, 156, 73);
+    margin: 10px;
+}
+.conteudo {
+    flex: 1;    
+    padding: 40px;
+    background-color: #ffffff;    
+}
+ 
+.rodape {
+    background:  #030114; 
+    color: #f1f1f1;
+    text-align: center;
+    padding: 8px;
+    font-size: 10px; 
+}
+.card-hover-scale {
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover-scale:hover {
+        transform: scale(1.03); 
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;  
+        cursor: pointer;
+    }
+ .nav-link:hover {
+  text-decoration: none;     
+  color: white;                          
+}
+   

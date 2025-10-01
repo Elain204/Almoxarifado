@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        
+        <div class="mt-5">
+            <h2 class="h2">
+                Novo Funcionário
+            </h2>
+        </div>
+        
+        <div class="funcionario form mt-5">
+            <form method="post">
+                {% csrf_token %}
+                
+                {% if erros %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        
+                        <ul class="list-unstyled mb-0">
+                            {% for campo, mensagem in erros.items %}
+                                <li>{{ mensagem }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <div class="row g-3">
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <label for="id_username" class="form-label required">Nome de Usuário</label>
+                        <input type="text" name="username" id="id_username" class="form-control" required value="{{ val.username|default_if_none:'' }}">
+                    </div>
+
+                    <div class="col-lg-8 col-md-6">
+                        <label for="id_nome" class="form-label required">Nome Completo</label>
+                        <input type="text" name="nome" id="id_nome" class="form-control" required value="{{ val.nome|default_if_none:'' }}">
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <label for="id_data_nascimento" class="form-label">Data de Nascimento</label>
+                        <input type="date" name="data_nascimento" id="id_data_nascimento" class="form-control" value="{{ val.data_nascimento|default_if_none:'' }}">
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <label for="id_email" class="form-label required">Email</label>
+                        <input type="email" name="email" id="id_email" class="form-control" required value="{{ val.email|default_if_none:'' }}">
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <label for="id_telefone" class="form-label">Telefone</label>
+                        <input type="text" name="telefone" id="id_telefone" class="form-control" value="{{ val.telefone|default_if_none:'' }}">
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <label for="id_senha" class="form-label required">Senha</label>
+                        <input type="password" name="senha" id="id_senha" class="form-control" required value="{{ val.senha|default_if_none:'' }}">
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        <label for="instituicao_id" class="form-label required">Instituição</label>
+                        <select name="instituicao" id="instituicao_id" class="form-select" required>
+                            <option value="">Selecionar</option>
+                            {% for instituicao in instituicoes %} 
+                                <option 
+                                    value="{{ instituicao.id }}" 
+                                    {% if val.instituicao_id|stringformat:'s' == instituicao.id|stringformat:'s' %}selected{% endif %}
+                                >
+                                    {{ instituicao.nome }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                </div>
+                
+                <div class="row g-3 mt-3">
+                    
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" data-disable-with="Salvando">Salvar</button>
+                    </div>
+                    
+                    <div class="col-auto">
+                        <a href="{% url 'lista_funcionario' %}" class="btn btn-secondary">Voltar</a>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

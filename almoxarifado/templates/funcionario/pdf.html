@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Funcionários</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 3px; text-align: left; vertical-align: top; }
+        th { background: #f4f4f4; font-size: 9px; }
+        h2 { color: #030114;  font-size: 16px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Lista de Funcionários</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Usuário</th>
+                <th>Nome</th>
+                <th>Instituição</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in funcionarios %}
+            <tr>
+                <td>{{ f.user.username }}</td>
+                <td>{{ f.nome }}</td>
+                <td>{{ f.instituicao.nome }}</td>
+            </tr>
+            {% endfor %}
+            {% if funcionarios|length == 0 %}
+            <tr>
+                <td colspan="3">Nenhum funcionário cadastrado.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <p style="text-align: right; font-size: 10px; margin-top: 40px;">Gerado em: {% now "d/m/Y H:i:s" %}</p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almoxarifado</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header-esquerda">
+            <h2>Sistema</h2>
+        </div>
+        <div class="header-direita">
+   
+        <h3>Seja bem vindo! <a class="nav-link" href="#">{{  request.user.get_full_name|default:request.user.username }}</a></h3>
+           
+        <a href="{% url 'logout_funcionario' %}">
+        <button class="btn btn-secondary"><i class="fas fa-right-from-bracket" style="padding: 10px;"></i>Logout</button>
+    </a>
+
+    </header>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="titulo">
+                <h1>Menu</h1>
+                </div>
+                
+            <div id="dados">
+                <div class="menu">
+                    <ul class="lista sidebar-lista">
+                        <li class="barra1"><a href="{% url 'area_funcionario' %}" class="menulink"><i class="fa fa-home fa-fw"></i> Início</a></li>
+                        <li class="barra"><a href="{% url 'lista_funcionario' %}" class="menulink"><i class="fa-solid fa-user-tie"></i> Funcionário</a></li>
+                        <li class="barra2"><a href="{% url 'lista_instituicao' %}" class="menulink"><i class="fa fa-building fa-fw"></i> Instituição</a></li>
+                        </ul>
+                </div>
+            </div>
+        </aside>
+
+        <main class="conteudo">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+            <h3>Sistema</h3>
+        </div>
+        <div class="rodape-copy">
+            <p>&copy; 2025 Direitos Reservados.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6tP6i/jS5p6P0Qx5lQ7pYyR7K9A6FjO3S3wV8c6lO1zT1o7K7bW4W6R9F0R7P1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.23.12/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.23.12/dist/js/uikit-icons.min.js"></script>
+
+</body>
+
+</html>
